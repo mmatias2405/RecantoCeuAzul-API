@@ -19,7 +19,7 @@ services:
     restart: unless-stopped
 
   influxdb:
-    image: influxdb:2
+    image: influxdb:2.8.0
     ports:
       - "8086:8086"
     environment:
@@ -102,3 +102,4 @@ secrets:
     environment: "INFLUXDB_PASSWORD"
   influxdb2-admin-token:
     environment: "INFLUXDB_TOKEN"
+
