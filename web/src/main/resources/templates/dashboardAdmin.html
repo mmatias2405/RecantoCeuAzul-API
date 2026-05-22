@@ -198,7 +198,7 @@ aria-hidden="true"
                 </div>
                 <div class="mb-3">
                     <label for="volume" class="sr-only">Insira o leitura do Hidrômetro(m³)</label>
-                    <input type="number" name="volumeAgua"step="0.1" id="volume" class="form-control" placeholder="Volume"  required>
+                    <input type="number" name="volumeAgua"step="0.0001" id="volume" class="form-control" placeholder="Volume"  required>
                     <input type="hidden" name="residenciaId" id="resIdForPost">
                     <input type="hidden" name="atorId" value="0">
                 </div>
@@ -253,9 +253,9 @@ crossorigin="anonymous"
                             <strong class="text-white">${dadoGeral.mesAno}</strong>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Consumo Total: ${dadoGeral.consumoTotal.toFixed(2)} m<sup>3</sup></p>
+                            <p class="card-text">Consumo Total: ${parseFloat(dadoGeral.consumoTotal).toFixed(4)} m<sup>3</sup></p>
                             <p class="card-text">Medições realizadas: ${dadoGeral.medicoesRealizadas}</p>
-                            <p class="card-text">Média de Consumo: ${dadoGeral.mediaConsumo.toFixed(2)} m<sup>3</sup></p>
+                            <p class="card-text">Média de Consumo: ${parseFloat(dadoGeral.mediaConsumo).toFixed(4)} m<sup>3</sup></p>
                         </div>
                     </div>
                 </div>

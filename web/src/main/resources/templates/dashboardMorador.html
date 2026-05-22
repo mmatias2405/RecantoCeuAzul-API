@@ -69,7 +69,7 @@
         
         <!-- O display em si. O valor do Thymeleaf carrega primeiro -->
         <div class="display-digital">
-            <span id="valor-consumo" th:text="${#numbers.formatDecimal(consumoAtual, 1, 'COMMA', 2, 'POINT')}">0,00</span>
+            <span id="valor-consumo" th:text="${#numbers.formatDecimal(consumoAtual, 1, 'COMMA', 4, 'POINT')}">0,0000</span>
             <span class="unidade">m³</span>
         </div>
 
@@ -134,10 +134,10 @@
                 if (response.ok) {
                     const dados = await response.json(); 
                     
-                    // Formata o número (ex: 12.345 -> 12,35)
+                    // Formata o número (ex: 12.3456 -> 12,3456)
                     const valorFormatado = parseFloat(dados.consumo).toLocaleString('pt-BR', {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
+                        minimumFractionDigits: 4,
+                        maximumFractionDigits: 4
                     });
                     
                     displayElement.innerText = valorFormatado;
@@ -195,9 +195,9 @@
                     <strong class="text-white">${dataHeader}</strong>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">Consumo: <span class="${classeConsumo}">${medicao.delta.toFixed(1)} m<sup>3</sup></span></p>
+                    <p class="card-text">Consumo: <span class="${classeConsumo}">${medicao.delta.toFixed(4)} m<sup>3</sup></span></p>
 
-                    <p class="card-text">Média: ${mediaDoMes.toFixed(1)} m<sup>3</sup></p>
+                    <p class="card-text">Média: ${mediaDoMes.toFixed(4)} m<sup>3</sup></p>
 
                     <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id="${medicao.id}">
                         Ver Detalhe
@@ -250,8 +250,8 @@
             
             // 17. Preenche o HTML do modal com os dados encontrados
             modalTitulo.textContent = `Detalhes da Medição (${mes}/${ano})`;
-            modalVolume.textContent = `${medicao.volumeAgua.toFixed(1)} m³`;
-            modalConsumo.textContent = `${medicao.delta.toFixed(1)} m³`;
+            modalVolume.textContent = `${medicao.volumeAgua.toFixed(4)} m³`;
+            modalConsumo.textContent = `${medicao.delta.toFixed(4)} m³`;
             modalData.textContent = dataLeitura;
             modalAtor.textContent = medicao.ator.nome;
         });
